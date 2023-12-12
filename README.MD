@@ -1,6 +1,7 @@
 # Node Con Express
-Taller0002Backend
-Ejemplos de node con express para el diplomado
+Taller Unidad 2 Backend
+
+# La empresa se llama TUMASCOTA
 
 Como el git ingore evita se suban los node_mudules, debes ejecutar los siguiente comandos para que funcione una vez clonado el repositorio:
 
