@@ -1,5 +1,5 @@
 //importar el modelo de mascotas
-import {mascotas} from "../modelos/mascotaModelo.js";
+import { mascotas } from "../modelos/mascotaModelo.js";
 
 //listar todas las mascotas
 const listarMascotas = (req, res) => {

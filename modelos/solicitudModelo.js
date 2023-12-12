@@ -18,7 +18,7 @@ const solicitudes = db.define('solicitudes',{
         //es autoincrementado
         autoIncrement: true
     },
-    mascota:{
+    mascotaPK:{
         //tipo de dato
         type: Sequelize.INTEGER,
         //no se permite vacio
@@ -51,6 +51,6 @@ const solicitudes = db.define('solicitudes',{
 });
 
 // definir la relación de solicitud con mascota
-solicitudes.belongsTo(mascotas, { foreignKey: 'mascota' });
+solicitudes.belongsTo(mascotas, { foreignKey: 'mascotaPK' });
 
 export { solicitudes };

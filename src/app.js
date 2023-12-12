@@ -2,6 +2,7 @@
 import express from "express";
 import { mascostasRouter } from "../rutas/mascotasRouter.js";
 import { db } from "../database/conexion.js";
+import { solicitudesRouter } from "../rutas/solicitudesRouter.js";
 
 //Crear la instancia de express
 const app = express();
@@ -26,6 +27,9 @@ app.get("/", (req, res) => {res.send("Hola Desde Backend MySQL");});
 
 //definir las rutas para mascotas
 app.use('/mascotas', mascostasRouter);
+
+//definir las rutas para solicitudes
+app.use('/solicitudes', solicitudesRouter);
 
 //si fue posible conectarse a la base de datos
 db.sync().then(() => {

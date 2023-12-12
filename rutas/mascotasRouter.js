@@ -12,7 +12,7 @@ mascostasRouter.get('/', (req, res)=> {
 
 mascostasRouter.get('/buscar/:id',(req, res) => {
     buscarMascota(req, res);
-})
+});
 
 //DE TIPO POST
 mascostasRouter.post('/crear', (req, res)=>{
