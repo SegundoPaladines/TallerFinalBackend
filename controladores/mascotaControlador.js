@@ -34,11 +34,11 @@ const buscarMascota = (req , res) => {
 const crearMascota = (req, res) => {
     //los campos nombre, tipo mascota y estado son obligatorios
     if(!req.body.nombre){
-        res.status(400).json({mensaje: "el campo nombre es requerido"});
+        res.status(400).json({tipo:'error',mensaje: "el campo nombre es requerido"});
         return;
     }
     if(!req.body.tipo_mascota){
-        res.status(400).json({mensaje: "el tipo_mascota es requerido"});
+        res.status(400).json({tipo:'error',mensaje: "el tipo_mascota es requerido"});
         return;
     }
     
@@ -52,9 +52,14 @@ const crearMascota = (req, res) => {
 
     //creacion de la mascota en la base de datos
     mascotas.create(dataset).then((r)=>{
-        res.status(200).json({mensaje: "Mascota registrada con exito"});
+        res.status(200).json({
+            tipo:'success',
+            mensaje: "Mascota registrada con exito"
+        });
     }).catch((e)=>{
-        res.status(500).json({mensaje: "No se ha podido registrar la mascota"+e});
+        res.status(500).json({
+            tipo:'error',
+            mensaje: "No se ha podido registrar la mascota"+e});
     });
 
     return;
@@ -65,16 +70,16 @@ const eliminarMascota = (req , res) => {
     const id = parseInt(req.params.id);
     
     if(id == null){
-        res.status(400).json({mensaje: "El id no puede estar vacio"});
+        res.status(400).json({tipo:'error', mensaje: "El id no puede estar vacio"});
         return;
     }
 
     mascotas.destroy({
         where:{pk: id} //recordemos que en la base de datos, el campo de la llave primaria es pk, no id
     }).then((r) => {
-        res.status(200).json({mensaje: "Mascota eliminada exitosamente"});
+        res.status(200).json({tipo:'success', mensaje: "Mascota eliminada exitosamente"});
     }).catch((e) => {
-        res.status(500).json({mensaje: "No se ha podido eliminar el registro"});
+        res.status(500).json({tipo:'error', mensaje: "No se ha podido eliminar el registro"});
     });
 
     return;
@@ -85,12 +90,12 @@ const actualizarMascota = (req , res) => {
     const id = parseInt(req.params.id);
     
     if(id == null){
-        res.status(400).json({mensaje: "El id no puede estar vacio"});
+        res.status(400).json({tipo:'error', mensaje: "El id no puede estar vacio"});
         return;
     }
 
     if(!req.body.nombre && !req.body.edad && !req.body.tipo_mascota && !req.body.estado){
-        res.status(400).json({mensaje: "No se ha encontrado ningun dato para actualizar"});
+        res.status(400).json({tipo:'error', mensaje: "No se ha encontrado ningun dato para actualizar"});
         return;
     }
 
@@ -107,9 +112,9 @@ const actualizarMascota = (req , res) => {
     },{
         where:{pk: id} //recordemos que en la base de datos, el campo de la llave primaria es pk, no id
     }).then((r) => {
-        res.status(200).json({mensaje: "Mascota actualizada exitosamente"});
+        res.status(200).json({tipo:'success', mensaje: "Mascota actualizada exitosamente"});
     }).catch((e) => {
-        res.status(500).json({mensaje: "No se ha podido actualizar el registro"});
+        res.status(500).json({tipo:'error', mensaje: "No se ha podido actualizar el registro"});
     });
 
     return;

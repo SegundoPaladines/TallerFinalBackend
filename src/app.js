@@ -3,12 +3,17 @@ import express from "express";
 import { mascostasRouter } from "../rutas/mascotasRouter.js";
 import { db } from "../database/conexion.js";
 import { solicitudesRouter } from "../rutas/solicitudesRouter.js";
+//importar cors
+import cors from 'cors';
 
 //Crear la instancia de express
 const app = express();
 
 // Middleware para procesar datos JSON en el cuerpo de las solicitudes
 app.use(express.json());
+
+//cors para que se puede consultar desde el front
+app.use(cors());
 
 // Middleware para procesar datos de formularios en el cuerpo de las solicitudes
 app.use(express.urlencoded({ extended: true }));
