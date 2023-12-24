@@ -3,6 +3,7 @@ import express from "express";
 import { mascostasRouter } from "../rutas/mascotasRouter.js";
 import { db } from "../database/conexion.js";
 import { solicitudesRouter } from "../rutas/solicitudesRouter.js";
+import { usuariosRouter } from "../rutas/usuariosRouter.js";
 //importar cors
 import cors from 'cors';
 
@@ -35,6 +36,9 @@ app.use('/mascotas', mascostasRouter);
 
 //definir las rutas para solicitudes
 app.use('/solicitudes', solicitudesRouter);
+
+//definir las rutas para solicitudes
+app.use('/usuarios', usuariosRouter);
 
 //si fue posible conectarse a la base de datos
 db.sync().then(() => {

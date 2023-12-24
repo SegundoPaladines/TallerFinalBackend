@@ -4,6 +4,8 @@ import { Sequelize } from "sequelize";
 import { db } from "../database/conexion.js";
 //importar el modelo mascotas
 import { mascotas } from "./mascotaModelo.js";
+//importar el modelo usuarios
+import { usuarios } from "./usuarioModelo.js"
 
 //definicion del objeto que comunicara con la tabla
 const solicitudes = db.define('solicitudes',{
@@ -26,7 +28,7 @@ const solicitudes = db.define('solicitudes',{
     },
     adoptante:{
          //tipo de dato
-         type: Sequelize.STRING,
+         type: Sequelize.INTEGER,
          //no se permite vacio
          allowNull: false
     },
@@ -52,5 +54,7 @@ const solicitudes = db.define('solicitudes',{
 
 // definir la relación de solicitud con mascota
 solicitudes.belongsTo(mascotas, { foreignKey: 'mascotaPK' });
+//la relacion con usuario
+solicitudes.belongsTo(usuarios, { foreignKey: 'adoptante' });
 
 export { solicitudes };

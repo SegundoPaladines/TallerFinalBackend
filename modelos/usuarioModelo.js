@@ -1,10 +1,10 @@
-//importar Sequelize
+//importar Squelizer
 import { Sequelize } from "sequelize";
-//importar la variable de conexion
+//importar la conexion
 import { db } from "../database/conexion.js";
 
-//definicion del objeto que comunicara con la tabla
-export const mascotas = db.define('mascotas',{
+//definicion de la variable que construirá la tabla
+export const usuarios = db.define('usuarios',{
     //definicion de los atributos
     pk:{
         //tipo de dato
@@ -16,25 +16,31 @@ export const mascotas = db.define('mascotas',{
         //es autoincrementado
         autoIncrement:true
     },
-    nombre:{
-         //tipo de dato
-         type:Sequelize.STRING,
-         //no se permite vacio
-         allowNull:false
+    nombres:{
+        //tipo de dato
+        type:Sequelize.STRING,
+        //no se permite vacio
+        allowNull:false
+    },
+    usuario:{
+        //tipo de dato
+        type:Sequelize.STRING,
+        //no se permite vacio
+        allowNull:false
+    },
+    passwd:{
+        //tipo de dato
+        type:Sequelize.STRING,
+        //no se permite vacio
+        allowNull:false
+    },
+    rol:{
+        //tipo de dato
+        type:Sequelize.STRING,
+        //no se permite vacio
+        allowNull:false
     },
     foto:{
-        //tipo de dato
-        type:Sequelize.STRING,
-        //se permite vacio
-        allowNull:true
-    },
-    descripcion:{
-        //tipo de dato
-        type:Sequelize.STRING,
-        //se permite vacio
-        allowNull:true
-    },
-    rasa:{
         //tipo de dato
         type:Sequelize.STRING,
         //se permite vacio
@@ -46,16 +52,4 @@ export const mascotas = db.define('mascotas',{
         //se permite vacio
         allowNull:true
     },
-    tipo_mascota:{
-        //tipo de dato
-        type:Sequelize.CHAR,
-        //no se permite vacio
-        allowNull:false
-    },
-    estado:{
-        //tipo de dato
-        type:Sequelize.INTEGER,
-        //no se permite vacio
-        allowNull:true
-    }
 });

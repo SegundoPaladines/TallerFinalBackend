@@ -6,7 +6,7 @@ const listarMascotas = (req, res) => {
     mascotas.findAll().then((r) => {
         res.status(200).json(r);
     }).catch((e) => {
-        res.status(500).json({mensaje: "No se ha podido encontrar ningun registro"+e});
+        res.status(500).json({tipo:'error', mensaje: "No se ha podido encontrar ningun registro"+e});
     });
 
     return;
@@ -17,14 +17,14 @@ const buscarMascota = (req , res) => {
     const id = parseInt(req.params.id);
     
     if(id == null){
-        res.status(400).json({mensaje: "El id no puede estar vacio"});
+        res.status(400).json({tipo:'error', mensaje: "El id no puede estar vacio"});
         return;
     }
 
     mascotas.findByPk(id).then((r) => {
         res.status(200).json(r);
     }).catch((e) => {
-        res.status(500).json({mensaje: "No se ha podido encontrar el registro"});
+        res.status(500).json({tipo:'error', mensaje: "No se ha podido encontrar el registro"});
     });
 
     return;
@@ -47,7 +47,10 @@ const crearMascota = (req, res) => {
         nombre: req.body.nombre,
         edad: req.body.edad,
         tipo_mascota: req.body.tipo_mascota,
-        estado: req.body.estado
+        estado: req.body.estado,
+        foto: req.body.foto,
+        descripcion:req.body.descripcion,
+        rasa:req.body.rasa
     }
 
     //creacion de la mascota en la base de datos
@@ -94,7 +97,7 @@ const actualizarMascota = (req , res) => {
         return;
     }
 
-    if(!req.body.nombre && !req.body.edad && !req.body.tipo_mascota && !req.body.estado){
+    if(!req.body.rasa && !req.body.nombre && !req.body.edad && !req.body.tipo_mascota && !req.body.estado && !req.body.foto && !req.body.descripcion){
         res.status(400).json({tipo:'error', mensaje: "No se ha encontrado ningun dato para actualizar"});
         return;
     }
@@ -103,12 +106,19 @@ const actualizarMascota = (req , res) => {
     const edad = req.body.edad;
     const tipo_mascota = req.body.tipo_mascota;
     const estado = req.body.estado;
+    const foto = req.body.foto;
+    const descripcion = req.body.descripcion;
+    const rasa = req.body.rasa;
 
     mascotas.update({
         nombre: nombre,
         edad:edad,
         tipo_mascota:tipo_mascota,
-        estado:estado
+        estado:estado,
+        foto:foto,
+        descripcion:descripcion,
+        rasa:rasa
+
     },{
         where:{pk: id} //recordemos que en la base de datos, el campo de la llave primaria es pk, no id
     }).then((r) => {

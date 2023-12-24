@@ -59,7 +59,7 @@ const crearSolicitud = (req, res) => {
         return;
     }
     if(!req.body.adoptante){
-        res.status(400).json({mensaje: "El nombre del adoptante (adoptante) es requerido"});
+        res.status(400).json({mensaje: "El id del adoptante (adoptante) es requerido"});
         return;
     }
     if(!req.body.estado){
