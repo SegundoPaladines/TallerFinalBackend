@@ -1,5 +1,6 @@
 # Node Con Express
-Taller Unidad 2 Backend
+Taller Final Módulo 1 del Diplomado de actualización en nuevas tecnologías para el desarrollo de
+Software
 
 # La empresa se llama TUMASCOTA
 
