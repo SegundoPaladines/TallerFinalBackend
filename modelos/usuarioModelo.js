@@ -22,6 +22,12 @@ export const usuarios = db.define('usuarios',{
         //no se permite vacio
         allowNull:false
     },
+    telefono:{
+        //tipo de dato
+        type:Sequelize.STRING,
+        //no se permite vacio
+        allowNull:true
+    },
     usuario:{
         //tipo de dato
         type:Sequelize.STRING,

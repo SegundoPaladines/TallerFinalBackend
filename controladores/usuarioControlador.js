@@ -60,7 +60,8 @@ const crearUsuario = (req, res) => {
         usuario: req.body.usuario,
         passwd: req.body.passwd,
         foto: req.body.foto,
-        rol: req.body.rol
+        rol: req.body.rol,
+        telefono: req.body.telefono
     }
 
     //creacion del usuario en la base de datos
@@ -118,6 +119,7 @@ const actualizarUsuario = (req , res) => {
     const usuario = req.body.usuario;
     const foto = req.body.foto;
     const rol = req.body.rol;
+    const telefono = req.body.telefono;
 
     usuarios.update({
         nombres: nombres,
@@ -125,7 +127,8 @@ const actualizarUsuario = (req , res) => {
         passwd:passwd,
         usuario:usuario,
         foto:foto,
-        rol:rol
+        rol:rol,
+        telefono:telefono
     },{
         where:{pk: id} //recordemos que en la base de datos, el campo de la llave primaria es pk, no id
     }).then((r) => {
