@@ -40,7 +40,7 @@ const buscarUsuarioNombre = (req , res) => {
     }
     console.log(usuario);
 
-    usuarios.findAll({where:{usuario:usuario}}).then((r) => {
+    usuarios.findOne({where:{usuario:usuario}}).then((r) => {
         res.status(200).json(r);
     }).catch((e) => {
         res.status(500).json({tipo:'error', mensaje: "No se ha podido encontrar el registro"});
