@@ -30,6 +30,25 @@ const buscarUsuario= (req , res) => {
     return;
 }
 
+//buscar un usuario por id
+const buscarUsuarioNombre = (req , res) => {
+    const usuario = req.params.usuario;
+    
+    if(usuario == null){
+        res.status(400).json({tipo:'error', mensaje: "El nombre de usuario no puede estar vacio"});
+        return;
+    }
+    console.log(usuario);
+
+    usuarios.findAll({where:{usuario:usuario}}).then((r) => {
+        res.status(200).json(r);
+    }).catch((e) => {
+        res.status(500).json({tipo:'error', mensaje: "No se ha podido encontrar el registro"});
+    });
+
+    return;
+}
+
 //crear un usuarios en la tabla
 const crearUsuario = (req, res) => {
     //los campos nombres, usuario y passwd son obligatorios
@@ -140,4 +159,4 @@ const actualizarUsuario = (req , res) => {
     return;
 }
 
-export { crearUsuario, listarUsuarios, buscarUsuario, eliminarUsuario, actualizarUsuario };
+export { crearUsuario, listarUsuarios, buscarUsuarioNombre, buscarUsuario, eliminarUsuario, actualizarUsuario };

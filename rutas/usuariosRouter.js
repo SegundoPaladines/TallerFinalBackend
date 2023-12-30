@@ -1,5 +1,5 @@
 import express from "express";
-import { crearUsuario, listarUsuarios, buscarUsuario, eliminarUsuario, actualizarUsuario} from "../controladores/usuarioControlador.js";
+import { crearUsuario, listarUsuarios, buscarUsuario, eliminarUsuario, actualizarUsuario, buscarUsuarioNombre} from "../controladores/usuarioControlador.js";
 
 //crear la instancia de tipo router
 const usuariosRouter = express.Router();
@@ -12,6 +12,10 @@ usuariosRouter.get('/', (req, res)=> {
 
 usuariosRouter.get('/buscar/:id',(req, res) => {
     buscarUsuario(req, res);
+});
+
+usuariosRouter.get('/buscar/nombre/:usuario',(req, res) => {
+    buscarUsuarioNombre(req, res);
 });
 
 //DE TIPO POST
