@@ -1,5 +1,4 @@
 //importamos el modelo de solicitudes
-import { where } from "sequelize";
 import { solicitudes } from "../modelos/solicitudModelo.js";
 
 //listar todas las solicitudes
@@ -23,6 +22,46 @@ const buscarSolicitud = (req, res) => {
     }
 
     solicitudes.findByPk(id).then((r) => {
+        res.status(200).json(r);
+    }).catch((e) => {
+        res.status(500).json({mensaje: "No se ha podido encontrar el registro"});
+    });
+
+    return;
+}
+
+//buscar solicitudes de un usuario
+const buscarSolicitudUser = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    if(id == null){
+        res.status(400).json({mensaje: "Se requiere el id para poder buscar el registro"});
+        return;
+    }
+
+    solicitudes.findAll({
+        where:{adoptante:id}
+    }).then((r) => {
+        res.status(200).json(r);
+    }).catch((e) => {
+        res.status(500).json({mensaje: "No se ha podido encontrar el registro"});
+    });
+
+    return;
+}
+
+//buscar solicitudes de una mascota
+const buscarSolicitudMascota = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    if(id == null){
+        res.status(400).json({mensaje: "Se requiere el id para poder buscar el registro"});
+        return;
+    }
+
+    solicitudes.findAll({
+        where:{mascotaPK:id}
+    }).then((r) => {
         res.status(200).json(r);
     }).catch((e) => {
         res.status(500).json({mensaje: "No se ha podido encontrar el registro"});
@@ -127,4 +166,4 @@ const actualizarSolicitud = (req, res) => {
     return;
 }
 
-export { listarSolicitudes, crearSolicitud, buscarSolicitud, eliminarSolicitud, actualizarSolicitud }
+export { listarSolicitudes, crearSolicitud, buscarSolicitudMascota, buscarSolicitudUser, buscarSolicitud, eliminarSolicitud, actualizarSolicitud }
